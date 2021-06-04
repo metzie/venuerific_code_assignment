@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Other gems
 gem 'dotenv-rails'
 gem 'devise'
+gem 'friendly_id', '~> 5.4.0'
