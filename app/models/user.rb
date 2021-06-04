@@ -20,8 +20,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable, :rememberable,
          :validatable
 
-  ROLES = %w(admin regular_user).freeze
+  ROLES = {
+    admin: 'admin',
+    regular_user: 'regular_user'
+  }.freeze
+
+  enum role: ROLES
 
   validates :name, presence: true
-  validates :role, inclusion: { in: ROLES }
+  validates :role, inclusion: { in: User.roles.keys }
+
+  before_validation :ensure_role, on: :create
+
+  private
+
+  def ensure_role
+    self.role = ROLES[:regular_user] unless role
+  end
 end
