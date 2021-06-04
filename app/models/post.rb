@@ -24,4 +24,9 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 3 }
   validates :excerpt, presence: true, length: { minimum: 20 }
   validates :content, presence: true, length: { minimum: 40 }
+
+  delegate :name, to: :author, prefix: true
+
+  default_scope { order(published_at: :desc) }
+  scope :published, -> { where(published: true) }
 end
