@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
   enum role: ROLES
 
+  has_many :posts, dependent: :destroy, inverse_of: :author
+
   validates :name, presence: true
   validates :role, inclusion: { in: User.roles.keys }
 

@@ -18,4 +18,10 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  belongs_to :author, class_name: 'User', inverse_of: :posts
+
+  validates :title, presence: true, length: { minimum: 3 }
+  validates :excerpt, presence: true, length: { minimum: 20 }
+  validates :content, presence: true, length: { minimum: 40 }
 end
