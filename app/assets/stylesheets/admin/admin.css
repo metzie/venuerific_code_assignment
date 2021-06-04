@@ -11,16 +11,5 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap/scss/bootstrap
- *= require startbootstrap-clean-blog/src/scss/styles
+ *= require startbootstrap-sb-admin/src/scss/styles
  */
-
-header.masthead:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #212529;
-  opacity: 0.5;
-}
