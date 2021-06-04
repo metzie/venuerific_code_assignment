@@ -4717,6 +4717,11 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+popper.js@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -6130,6 +6135,13 @@ stable@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
   integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
+
+startbootstrap-clean-blog@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/startbootstrap-clean-blog/-/startbootstrap-clean-blog-5.1.0.tgz#52ed1ca654a701a8127202b05e5931c39432a107"
+  integrity sha512-KsPZNA/gp0DxjnSbGAHe9RKK7RJy9TfrWZ2BMKODcOubDScRJjt26oI55eaAAgjnv4mafUnFTG5CpZpmeVPg2A==
+  dependencies:
+    bootstrap "4.6.0"
 
 startbootstrap-sb-admin@^6.0.3:
   version "6.0.3"

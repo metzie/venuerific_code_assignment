@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: %i[confirmation unlock passwords]
 
+  root to: 'front/home#index'
+
   devise_scope :user do
     namespace :admin do
       root to: 'dashboard#index'
