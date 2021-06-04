@@ -19,4 +19,9 @@ class User < ApplicationRecord
   # :recoverable,:confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable, :rememberable,
          :validatable
+
+  ROLES = %w(admin regular_user).freeze
+
+  validates :name, presence: true
+  validates :role, inclusion: { in: ROLES }
 end
