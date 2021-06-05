@@ -26,11 +26,11 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { minimum: 40 }
   validates :published_at, presence: true, if: :published
 
-  delegate :name, to: :author, prefix: true
+  delegate :name, :email, to: :author, prefix: true
 
+  default_scope {  order(published_at: :desc) }
+  scope :reversed, -> { order(published_at: :asc) }
   scope :published, -> { where(published: true) }
-  scope :recent, -> { order(published_at: :desc) }
-  scope :oldest, -> { order(published_at: :asc) }
 
   def self.permitted_attributes
     [

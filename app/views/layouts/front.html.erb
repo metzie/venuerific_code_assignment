@@ -27,6 +27,15 @@
             <li class="nav-item">
               <%= link_to('Posts', posts_path, class: 'nav-link') %>
             </li>
+            <% if current_user %>
+            <li class="nav-item">
+              <%= link_to(current_user.name, admin_root_path, class: 'nav-link') %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to('Sign in', user_session_path, class: 'nav-link') %>
+            </li>
+            <% end %>
           </ul>
         </div>
       </div>

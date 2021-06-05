@@ -4,7 +4,7 @@
   <!-- Pager-->
   <%- if newer_than -%>
   <div class="d-flex justify-content-start mb-4">
-    <%= link_to(posts_path(newer_than: newer_than.to_s), class: 'btn btn-primary text-uppercase') do %>
+    <%= link_to(posts_path(page: newer_than), class: 'btn btn-primary text-uppercase') do %>
       &laquo; Newer Posts
     <% end %>
   </div>
@@ -12,7 +12,7 @@
 
   <%- if older_than -%>
   <div class="d-flex justify-content-end mb-4">
-    <%= link_to(posts_path(older_than: older_than.to_s), class: 'btn btn-primary text-uppercase') do %>
+    <%= link_to(posts_path(page: older_than), class: 'btn btn-primary text-uppercase') do %>
       Older Posts &raquo;
     <% end %>
   </div>

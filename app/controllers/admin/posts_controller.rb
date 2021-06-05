@@ -5,7 +5,7 @@ module Admin
     before_action :find_post, except: %i[index new create]
 
     def index
-      @posts = include_author.recent
+      @posts = include_author
     end
 
     def new

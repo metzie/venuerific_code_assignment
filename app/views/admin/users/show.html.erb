@@ -18,8 +18,8 @@
   <dd class="col-sm-9"><%= @user.name %></dd>
   <dt class="col-sm-3">Role</dt>
   <dd class="col-sm-9"><%= t(@user.role, scope: :user_role) %></dd>
-  <dt class="col-sm-3">Last Sign in at</dt>
+  <dt class="col-sm-3">Last Sign in IP</dt>
   <dd class="col-sm-9"><%= @user.last_sign_in_ip %></dd>
   <dt class="col-sm-3">Last Sign in at</dt>
-  <dd class="col-sm-9"><%= l @user.last_sign_in_at, format: :short %></dd>
+  <dd class="col-sm-9"><%= l(@user.last_sign_in_at, format: :short) if @user.last_sign_in_at %></dd>
 </dl>

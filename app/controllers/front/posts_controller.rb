@@ -2,25 +2,14 @@ module Front
   class PostsController < BaseController
 
     def index
-      previous_older_than = Time.zone.parse(params[:older_than]) rescue nil
-      previous_newer_than = Time.zone.parse(params[:newer_than]) rescue nil
+      page = params[:page].to_i rescue 0
 
-      @posts = Post.includes(:author).published.recent.limit(10)
-      if previous_older_than
-        @posts = @posts.where('posts.published_at < ?', previous_older_than)
-      elsif previous_newer_than
-        @posts = @posts.where('posts.published_at > ?', previous_newer_than)
-      end
+      @posts = Post.includes(:author).published.limit(5).offset(5 * page)
 
-      @newer_than = @posts.first.try(:published_at)
-      @older_than = @posts.last.try(:published_at)
-
-      if Post.published.where('posts.published_at < ?', @older_than).count == 0
+      @newer_than = page.zero? ? nil : page - 1
+      @older_than = page + 1
+      if Post.published.offset(5 * @older_than).count == 0
         @older_than = nil
-      end
-
-      if Post.published.where('posts.published_at > ?', @newer_than).count == 0
-        @newer_than = nil
       end
     end
 
