@@ -19,8 +19,8 @@
         <tr>
           <th>Title</th>
           <th>Author</th>
-          <th>Published at</th>
           <th>Published</th>
+          <th>Published at</th>
           <th></th>
         </tr>
       </thead>
@@ -28,8 +28,8 @@
         <tr>
           <th>Title</th>
           <th>Author</th>
-          <th>Published at</th>
           <th>Published</th>
+          <th>Published at</th>
           <th></th>
         </tr>
       </tfoot>
@@ -42,11 +42,9 @@
         <% @posts.each do |post| %>
         <tr>
           <td><strong><%= post.title %></strong></td>
-          <td><%= post.author_name %></td>
+          <td><%= link_to(post.author_name, admin_user_path(post.author), class: "btn btn-link")%></td>
+          <td><i class="fas fa-<%= post.published? ? 'check' : 'times' %>"></i></td>
           <td><%= l(post.published_at, format: :short) if post.published_at %></td>
-          <td>
-            <i class="fas fa-<%= post.published? ? 'check' : 'times' %>"></i>
-          </td>
           <td>
             <div class="d-flex justify-content-around align-items-center">
               <span class="border border-primary">
