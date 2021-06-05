@@ -1,0 +1,78 @@
+<% content_for :model_title, 'Posts' %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item active">Posts</li>
+<% end %>
+<%= flash_message %>
+<div class="d-flex justify-content-end mb-4">
+  <%= link_to(new_admin_post_path, class: 'btn btn-primary') do %>
+    <i class="fas fa-plus"></i> Create Post
+  <% end %>
+</div>
+<div class="card mb-4">
+  <div class="card-header">
+    <i class="fas fa-table mr-1"></i>
+    List of Posts
+  </div>
+  <div class="card-body">
+    <table id="datatables" class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Published</th>
+          <th>Published at</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Published</th>
+          <th>Published at</th>
+          <th></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% if @posts.empty? %>
+        <tr>
+          <td class="dataTables-empty" colspan="5">No entries found</td>
+        </tr>
+        <% end %>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><strong><%= post.title %></strong></td>
+          <td><%= link_to(post.author_name, admin_user_path(post.author), class: "btn btn-link")%></td>
+          <td><i class="fas fa-<%= post.published? ? 'check' : 'times' %>"></i></td>
+          <td><%= l(post.published_at, format: :short) if post.published_at %></td>
+          <td>
+            <div class="d-flex justify-content-around align-items-center">
+              <span class="border border-primary">
+              <%= link_to(admin_post_path(post)) do %>
+                <i class="fas fa-info"></i>
+              <% end %>
+              </span>
+              &nbsp;
+              &nbsp;
+              <span class="border border-primary">
+              <%= link_to(edit_admin_post_path(post)) do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              </span>
+              &nbsp;
+              &nbsp;
+              <span class="border border-danger">
+              <%= link_to(admin_post_path(post),
+                          class: 'text-danger',
+                          data: { method: :delete, confirm: 'Are you sure?' }) do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

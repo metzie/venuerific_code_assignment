@@ -1,0 +1,79 @@
+<% content_for :model_title, 'Users' %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item active">Users</li>
+<% end %>
+<%= flash_message %>
+<div class="d-flex justify-content-end mb-4">
+  <%= link_to(new_admin_user_path, class: 'btn btn-primary') do %>
+    <i class="fas fa-plus"></i> Create User
+  <% end %>
+</div>
+<div class="card mb-4">
+  <div class="card-header">
+    <i class="fas fa-table mr-1"></i>
+    List of Users
+  </div>
+  <div class="card-body">
+    <table id="datatables" class="table table-bordered" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Last Sign in at</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Last Sign in at</th>
+          <th></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% if @users.empty? %>
+        <tr>
+          <td class="dataTables-empty" colspan="5">No entries found</td>
+        </tr>
+        <% end %>
+        <% @users.each do |user| %>
+        <tr>
+          <td><strong><%= user.name %></strong></td>
+          <td><%= user.email %></td>
+          <td><%= t(user.role, scope: :user_role) %></td>
+          <td><%= l(user.last_sign_in_at, format: :short) if user.last_sign_in_at %></td>
+          <td>
+            <div class="d-flex justify-content-around align-items-center">
+              <span class="border border-primary">
+              <%= link_to(admin_user_path(user), class: "border") do %>
+                <i class="fas fa-info"></i>
+              <% end %>
+              </span>
+              &nbsp;
+              &nbsp;
+              <span class="border border-primary">
+              <%= link_to(edit_admin_user_path(user)) do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              </span>
+              &nbsp;
+              &nbsp;
+              <%= content_tag(:span, class: "border border-danger") do %>
+                <%= link_to(admin_user_path(user),
+                        class: 'text-danger',
+                        data: { method: :delete, confirm: 'Are you sure?' }) do %>
+                <i class="fas fa-trash"></i>
+                <% end %>
+              <% end if user.id != 1 %>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

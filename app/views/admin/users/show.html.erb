@@ -1,0 +1,25 @@
+<% content_for :model_title, @user.name %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('User', admin_users_path) %>
+  </li>
+  <li class="breadcrumb-item active"><%= @user.name %></li>
+<% end %>
+<%= flash_message %>
+<div class="d-flex justify-content-end mb-4">
+  <%= link_to(edit_admin_user_path(@user), class: 'btn btn-primary') do %>
+    <i class="fas fa-edit"></i> Edit User
+  <% end %>
+</div>
+<dl class="row">
+  <dt class="col-sm-3">Email</dt>
+  <dd class="col-sm-9"><%= @user.email %></dd>
+  <dt class="col-sm-3">Name</dt>
+  <dd class="col-sm-9"><%= @user.name %></dd>
+  <dt class="col-sm-3">Role</dt>
+  <dd class="col-sm-9"><%= t(@user.role, scope: :user_role) %></dd>
+  <dt class="col-sm-3">Last Sign in IP</dt>
+  <dd class="col-sm-9"><%= @user.last_sign_in_ip %></dd>
+  <dt class="col-sm-3">Last Sign in at</dt>
+  <dd class="col-sm-9"><%= l(@user.last_sign_in_at, format: :short) if @user.last_sign_in_at %></dd>
+</dl>
