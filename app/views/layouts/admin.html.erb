@@ -30,6 +30,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><%= link_to('Edit Account', edit_user_registration_path, class: "dropdown-item") %></li>
             <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %></li>
           </ul>
         </li>
@@ -45,6 +46,10 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                   Dashboard
               <% end %>
+              <%= link_to(admin_posts_path, class: "nav-link") do %>
+                <div class="sb-nav-link-icon"><i class="fas fa-sticky-note-o"></i></div>
+                  Posts
+              <% end %>
             </div>
           </div>
           <div class="sb-sidenav-footer">
@@ -55,7 +60,16 @@
       </div>
       <div id="layoutSidenav_content">
         <main>
-          <%= yield %>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4"><%= yield :model_title %></h1>
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item<%= ' active' if current_page?('/admin') %>">
+                <%= current_page?('/admin') ? 'Dashboard' : link_to('Dashboard', admin_root_path) %>
+              </li>
+              <%= yield :breadcrumb %>
+            </ol>
+            <%= yield %>
+          </div>
         </main>
       <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">

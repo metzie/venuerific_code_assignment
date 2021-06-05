@@ -17,18 +17,34 @@
 #
 class Post < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, use: [:slugged, :finders]
 
   belongs_to :author, class_name: 'User', inverse_of: :posts
 
   validates :title, presence: true, length: { minimum: 3 }
   validates :excerpt, presence: true, length: { minimum: 20 }
   validates :content, presence: true, length: { minimum: 40 }
+  validates :published_at, presence: true, if: :published
 
   delegate :name, to: :author, prefix: true
-
 
   scope :published, -> { where(published: true) }
   scope :recent, -> { order(published_at: :desc) }
   scope :oldest, -> { order(published_at: :asc) }
+
+  def self.permitted_attributes
+    [
+      :title,
+      :excerpt,
+      :content,
+      :published,
+      :published_at,
+      :meta_keywords,
+      :meta_description,
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end

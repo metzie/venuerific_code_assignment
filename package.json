@@ -11,6 +11,7 @@
     "bootstrap": "^5.0.1",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
+    "simple-datatables": "^3.0.2",
     "startbootstrap-clean-blog": "^5.1.0",
     "startbootstrap-sb-admin": "^6.0.3",
     "turbolinks": "^5.2.0",
