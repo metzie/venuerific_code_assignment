@@ -13,6 +13,8 @@
 #  last_sign_in_ip     :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  name                :string           not null
+#  role                :string           default("regular_user")
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -26,6 +28,8 @@ class User < ApplicationRecord
   }.freeze
 
   enum role: ROLES
+
+  has_many :posts, dependent: :destroy, inverse_of: :author
 
   validates :name, presence: true
   validates :role, inclusion: { in: User.roles.keys }

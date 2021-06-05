@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_065817) do
+ActiveRecord::Schema.define(version: 2021_06_04_162340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.string "excerpt"
+    t.text "content"
+    t.boolean "published"
+    t.datetime "published_at"
+    t.string "meta_keywords"
+    t.text "meta_description"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["published"], name: "index_posts_on_published"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
+    t.index ["title"], name: "index_posts_on_title"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +61,5 @@ ActiveRecord::Schema.define(version: 2021_06_04_065817) do
     t.index ["role"], name: "index_users_on_role"
   end
 
+  add_foreign_key "posts", "users", column: "author_id"
 end
