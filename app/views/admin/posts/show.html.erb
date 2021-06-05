@@ -1,0 +1,29 @@
+<% content_for :model_title, @post.title %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('Post', admin_posts_path) %>
+  </li>
+  <li class="breadcrumb-item active"><%= @post.title %></li>
+<% end %>
+<%= flash_message %>
+<div class="d-flex justify-content-end mb-4">
+  <%= link_to(edit_admin_post_path(@post), class: 'btn btn-primary') do %>
+    <i class="fas fa-edit"></i> Edit Post
+  <% end %>
+</div>
+<dl class="row">
+  <dt class="col-sm-3">Published ?</dt>
+  <dd class="col-sm-9"><i class="fas fa-<%= @post.published? ? 'check' : 'times' %>"></i></dd>
+  <dt class="col-sm-3">Published at</dt>
+  <dd class="col-sm-9"><%= l(@post.published_at, format: :short) if @post.published_at %></dd>
+  <dt class="col-sm-3">Title</dt>
+  <dd class="col-sm-9"><%= @post.title %></dd>
+  <dt class="col-sm-3">Excerpt</dt>
+  <dd class="col-sm-9"><%= @post.excerpt %></dd>
+  <dt class="col-sm-3">Content</dt>
+  <dd class="col-sm-9"><%= @post.content %></dd>
+  <dt class="col-sm-3">Meta Keywords</dt>
+  <dd class="col-sm-9"><%= @post.meta_keywords.presence || '-' %></dd>
+  <dt class="col-sm-3">Meta Description</dt>
+  <dd class="col-sm-9"><%= @post.meta_description.presence || '-' %></dd>
+</dl>

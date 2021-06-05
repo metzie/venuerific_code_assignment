@@ -1,0 +1,10 @@
+<% content_for :model_title, 'New Post' %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('Posts', admin_posts_path) %>
+  </li>
+  <li class="breadcrumb-item active">New</li>
+<% end %>
+<%= form_with model: [:admin, @post], method: :post do |form| %>
+  <%= render partial: 'admin/posts/form', locals: { form: form } %>
+<% end %>

@@ -16,7 +16,8 @@ import "jquery/src/jquery"
 import "popper.js/dist/popper"
 import "bootstrap/dist/js/bootstrap"
 import "@fortawesome/fontawesome-free/js/all"
-import "startbootstrap-sb-admin/src/js/scripts"
+
+import {DataTable} from "simple-datatables"
 
 window.addEventListener('turbolinks:load', event => {
 
@@ -36,12 +37,12 @@ window.addEventListener('turbolinks:load', event => {
 
 });
 
-// window.addEventListener('DOMContentLoaded', event => {
-//     // Simple-DataTables
-//     // https://github.com/fiduswriter/Simple-DataTables/wiki
+window.addEventListener('turbolinks:load', event => {
+    // Simple-DataTables
+    // https://github.com/fiduswriter/Simple-DataTables/wiki
 
-//     const datatablesSimple = document.getElementById('datatablesSimple');
-//     if (datatablesSimple) {
-//         new simpleDatatables.DataTable(datatablesSimple);
-//     }
-// });
+    const datatables = document.getElementById('datatables');
+    if (datatables) {
+        new DataTable(datatables);
+    }
+});

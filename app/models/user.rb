@@ -29,12 +29,19 @@ class User < ApplicationRecord
 
   enum role: ROLES
 
-  has_many :posts, dependent: :destroy, inverse_of: :author
+  has_many :posts, dependent: :destroy, inverse_of: :author, foreign_key: 'author_id'
 
   validates :name, presence: true
   validates :role, inclusion: { in: User.roles.keys }
 
   before_validation :ensure_role, on: :create
+
+  def self.permitted_attributes
+    [
+      :name,
+      :role
+    ]
+  end
 
   private
 
