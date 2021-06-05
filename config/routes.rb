@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Front
   root to: 'front/home#index'
-  resources :posts, only: %i[index show], controller: 'front/posts', param: 'slug'
+  resources :posts, only: %i[index show], controller: 'front/posts'
 
   # Admin
   devise_scope :user do

@@ -1,0 +1,33 @@
+<% content_for :title, @post.title %>
+<% content_for :meta_keywords, @post.meta_keywords %>
+<% content_for :meta_description, @post.meta_description %>
+<% content_for :author_name, @post.author_name %>
+
+<header class="masthead" style="background-image: url('<%= image_path('post-bg.jpg') %>');">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1><%= @post.title %></h1>
+          <h2 class="subheading"><%= @post.excerpt %></h2>
+          <span class="meta">
+            Posted by
+            <a href="#!"><%= @post.author_name %></a>
+            on <%= l(@post.published_at, format: :short) %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content-->
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <%= @post.content.html_safe %>
+      </div>
+    </div>
+  </div>
+</article>

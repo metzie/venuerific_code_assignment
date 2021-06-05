@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title><%= yield(:title).presence || "Clean Blog - Start Bootstrap Theme" %></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="<%= yield(:meta_keywords).presence || '' %>" />
+    <meta name="description" content="<%= yield(:meta_description).presence || '' %>" />
+    <meta name="author" content="<%= yield(:author_name).presence || '' %>" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- Google fonts-->
@@ -24,6 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <%= link_to('Posts', posts_path, class: 'nav-link') %>
             </li>
             <% if current_user %>
             <li class="nav-item"><%= link_to('Edit Account', root_path, class: 'nav-link') %></li>

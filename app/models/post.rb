@@ -27,6 +27,8 @@ class Post < ApplicationRecord
 
   delegate :name, to: :author, prefix: true
 
-  default_scope { order(published_at: :desc) }
+
   scope :published, -> { where(published: true) }
+  scope :recent, -> { order(published_at: :desc) }
+  scope :oldest, -> { order(published_at: :asc) }
 end
