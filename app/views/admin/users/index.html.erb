@@ -61,12 +61,13 @@
               </span>
               &nbsp;
               &nbsp;
-              <span class="border border-danger">
-              <%= link_to(admin_user_path(user),
-                          class: 'text-danger',
-                          data: { method: :delete, confirm: 'Are you sure?' }) do %>
+              <%= content_tag(:span, class: "border border-danger") do %>
+                <%= link_to(admin_user_path(user),
+                        class: 'text-danger',
+                        data: { method: :delete, confirm: 'Are you sure?' }) do %>
                 <i class="fas fa-trash"></i>
-              <% end %>
+                <% end %>
+              <% end if user.id != 1 %>
               </span>
             </div>
           </td>
