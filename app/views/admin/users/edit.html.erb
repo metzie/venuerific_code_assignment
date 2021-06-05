@@ -1,0 +1,13 @@
+<% content_for :model_title, @user.name %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('Users', admin_users_path) %>
+  </li>
+  <li class="breadcrumb-item">
+    <%= link_to(@user.name, admin_user_path(@user)) %>
+  </li>
+  <li class="breadcrumb-item active">Edit</li>
+<% end %>
+<%= form_with model: [:admin, @user], method: :put do |form| %>
+  <%= render partial: 'admin/users/form', locals: { form: form } %>
+<% end %>

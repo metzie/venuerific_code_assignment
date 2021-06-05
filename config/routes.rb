@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :admin do
       root to: 'dashboard#index'
       resources :posts
+      resources :users
     end
   end
 end

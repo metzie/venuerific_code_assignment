@@ -36,6 +36,13 @@ class User < ApplicationRecord
 
   before_validation :ensure_role, on: :create
 
+  def self.permitted_attributes
+    [
+      :name,
+      :role
+    ]
+  end
+
   private
 
   def ensure_role
