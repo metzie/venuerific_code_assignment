@@ -21,10 +21,10 @@ User.create!(email: Faker::Internet.email,
              role: 'regular_user')
 
 Post.create!(title: Faker::Book.title,
-             excerpt: Faker::Lorem.sentence,
-             content: Faker::Lorem.paragraph,
+             excerpt: Faker::Lorem.sentence(word_count: 5),
+             content: Faker::Lorem.paragraph(sentence_count: 10),
              published: true,
              published_at: Time.zone.now,
              meta_keywords: Faker::Lorem.words.join(', '),
-             meta_description: Faker::Lorem.paragraph(sentence_count: 2),
+             meta_description: Faker::Lorem.paragraph(sentence_count: 3),
              author: User.regular_user.first)
